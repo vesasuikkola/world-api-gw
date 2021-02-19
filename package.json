@@ -10,7 +10,7 @@
     "dev:api-gw": "nodemon --inspect index.js",
     "json-server": "npx npm-run-parallel json-server:world json-server:analytics",
     "json-server:world": "npx json-server --watch test/dev_world_db.json --routes test/dev_world_routes.json --id \"Code\" --port 4001 --read-only",
-    "json-server:analytics":"npx json-server --watch test/dev_analytics_db.json --routes test/dev_analytics_routes.json --id \"countryCode\" --port 4002",
+    "json-server:analytics": "npx json-server --watch test/dev_analytics_db.json --routes test/dev_analytics_routes.json --id \"countryCode\" --port 4002",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

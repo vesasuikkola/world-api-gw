@@ -1,6 +1,0 @@
-{
-    "/analytics/views": "/analytics_views",
-    "/analytics/views/:id": "/analytics_views/:id",
-    "/world/countries": "/world_countries",
-    "/world/countries/:id": "/world_countries/:id"
-}
