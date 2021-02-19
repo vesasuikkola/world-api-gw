@@ -1,7 +1,6 @@
 {
   "name": "api-gateway",
   "version": "1.1.0",
-  "description": "Simple API Gateway using Express JS",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -13,14 +12,10 @@
     "json-server:analytics": "npx json-server --watch test/dev_analytics_db.json --routes test/dev_analytics_routes.json --id \"countryCode\" --port 4002",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "github.com/ecojuntak/api-gateway"
-  },
   "keywords": [
     "api-gateway"
   ],
-  "author": "Eko Simanjuntak",
+  "author": "Vesa Suikkola",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.21.1",
