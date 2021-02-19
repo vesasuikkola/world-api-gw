@@ -4,7 +4,7 @@ dotenv.config();
 
 const PORT = process.env.WORLD_PORT || 4001;
 const HOST = process.env.WORLD_HOST || 'localhost';
-const BASE_URL = `http://${HOST}:${PORT}`;
+const BASE_URL = `${HOST}:${PORT}`;
 const api = apiAdapter(BASE_URL);
 
 export const get = (req, res) =>

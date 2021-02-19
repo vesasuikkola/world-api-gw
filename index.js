@@ -14,8 +14,8 @@ app.use(cors());
 
 app.use(router);
 
-const PORT = process.env.PORT || 4000;
-const HOST = process.env.HOST || 'http://localhost';
+const PORT = process.env.PORT || 80;
+const HOST = process.env.HOST || 'localhost';
 app.listen(PORT, () =>
   console.log(`Simple API Gateway running on ${HOST}:${PORT}`)
 );
