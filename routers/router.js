@@ -18,4 +18,6 @@ router.put('/analytics*', isAuthorized, analyticsAPI.put);
 import * as worldAPI from '../controllers/worldController.js';
 router.get('/world*', isAuthorized, worldAPI.get);
 
+// TODO add separate Logging API?
+
 export default router;
