@@ -13,4 +13,7 @@ export const get = (req, res) =>
     .then((apiRes) => {
       res.status(apiRes.status).send(apiRes.data);
     })
-    .catch((error) => res.status(500).json(error));
+    .catch((error) => {
+      console.log(error.message);
+      res.status(500).json(error);
+    });
