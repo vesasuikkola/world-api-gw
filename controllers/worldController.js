@@ -1,4 +1,5 @@
 import apiAdapter from '../services/apiAdapter.js';
+import updateAnalytics from '../services/analyticsService.js';
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -7,7 +8,7 @@ const HOST = process.env.WORLD_HOST || 'localhost';
 const BASE_URL = `${HOST}:${PORT}`;
 const api = apiAdapter(BASE_URL);
 
-export const get = (req, res) =>
+export const get = (req, res) => {
   api
     .get(req.path, { headers: { authorization: req.headers.authorization } })
     .then((apiRes) => {
@@ -17,3 +18,7 @@ export const get = (req, res) =>
       console.log(error.message);
       res.status(500).json(error);
     });
+
+  if (req.params.code)
+    updateAnalytics(req.params.code, req.headers.authorization);
+};

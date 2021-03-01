@@ -1,7 +1,7 @@
 import User from '../model/user.js';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
-import config from '../config.js';
+import { AUTH_SECRET } from '../config.js';
 
 export const register = (req, res) => {
   User.findOne({ email: req.body.email }, (err, user) => {
@@ -18,7 +18,7 @@ export const register = (req, res) => {
       (err, user) => {
         if (err) return res.status(500).send('Registration failed');
 
-        const token = jwt.sign({ id: user._id }, config.secret, {
+        const token = jwt.sign({ id: user._id }, AUTH_SECRET.secret, {
           expiresIn: 86400
         });
 
@@ -40,7 +40,7 @@ export const login = (req, res) => {
     if (!passwordIsValid)
       return res.status(401).send({ auth: false, token: null });
 
-    const token = jwt.sign({ id: user._id }, config.secret, {
+    const token = jwt.sign({ id: user._id }, AUTH_SECRET.secret, {
       expiresIn: 86400
     });
 

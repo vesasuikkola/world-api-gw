@@ -1,4 +1,5 @@
 import apiAdapter from '../services/apiAdapter.js';
+import { API_PATHS } from '../config.js';
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -7,10 +8,9 @@ const HOST = process.env.ANALYTICS_HOST || 'localhost';
 const BASE_URL = `${HOST}:${PORT}`;
 const api = apiAdapter(BASE_URL);
 
-export const get = (req, res) =>
+export default (code, jwt) =>
   api
-    .get(req.path, { headers: { authorization: req.headers.authorization } })
-    .then((apiRes) => {
-      res.status(apiRes.status).send(apiRes.data);
+    .put(`/${API_PATHS.analytics_db.views}/${code}`, null, {
+      headers: { authorization: jwt } //FIXME: programmatic calls should use their own identity?
     })
-    .catch((error) => res.status(500).json(error));
+    .catch(console.log);

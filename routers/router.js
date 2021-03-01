@@ -12,11 +12,11 @@ router.post('/login', auth.login);
 // Analytics API
 import * as analyticsAPI from '../controllers/analyticsController.js';
 router.get('/analytics*', isAuthorized, analyticsAPI.get);
-router.put('/analytics*', isAuthorized, analyticsAPI.put);
 
 // World API
 import * as worldAPI from '../controllers/worldController.js';
-router.get('/world*', isAuthorized, worldAPI.get);
+router.get('/world/countries/:code', isAuthorized, worldAPI.get);
+router.get('/world/countries', isAuthorized, worldAPI.get);
 
 // TODO add separate Logging API?
 
