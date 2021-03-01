@@ -8,9 +8,18 @@ const HOST = process.env.ANALYTICS_HOST || 'localhost';
 const BASE_URL = `${HOST}:${PORT}`;
 const api = apiAdapter(BASE_URL);
 
-export default (code, jwt) =>
+export const updateAnalytics = (code, jwt) =>
   api
     .put(`/${API_PATHS.analytics_db.views}/${code}`, null, {
       headers: { authorization: jwt } //FIXME: programmatic calls should use their own identity?
     })
     .catch(console.log);
+
+export const getAnalytics = (code, jwt) =>
+  code
+    ? api.get(`/${API_PATHS.analytics_db.views}/${code}`, {
+        headers: { authorization: jwt } //FIXME: programmatic calls should use their own identity?
+      })
+    : api.get(`/${API_PATHS.analytics_db.views}`, {
+        headers: { authorization: jwt } //FIXME: programmatic calls should use their own identity?
+      });
