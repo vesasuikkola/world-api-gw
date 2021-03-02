@@ -1,10 +1,7 @@
 import apiAdapter from '../services/apiAdapter.js';
-import dotenv from 'dotenv';
-dotenv.config();
+import { APIS } from '../config.js';
 
-const PORT = process.env.ANALYTICS_PORT || 4002;
-const HOST = process.env.ANALYTICS_HOST || 'localhost';
-const BASE_URL = `${HOST}:${PORT}`;
+const BASE_URL = `${APIS.analytics_host}:${APIS.analytics_port}`;
 const api = apiAdapter(BASE_URL);
 
 export const get = (req, res) =>

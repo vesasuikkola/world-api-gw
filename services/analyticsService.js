@@ -1,25 +1,21 @@
 import apiAdapter from '../services/apiAdapter.js';
-import { API_PATHS } from '../config.js';
-import dotenv from 'dotenv';
-dotenv.config();
+import { APIS } from '../config.js';
 
-const PORT = process.env.ANALYTICS_PORT || 4002;
-const HOST = process.env.ANALYTICS_HOST || 'localhost';
-const BASE_URL = `${HOST}:${PORT}`;
+const BASE_URL = `${APIS.analytics_host}:${APIS.analytics_port}`;
 const api = apiAdapter(BASE_URL);
 
 export const updateAnalytics = (code, jwt) =>
   api
-    .put(`/${API_PATHS.analytics_db.views}/${code}`, null, {
+    .put(`/${APIS.analytics_path}/${code}`, null, {
       headers: { authorization: jwt } //FIXME: programmatic calls should use their own identity?
     })
     .catch(console.log);
 
 export const getAnalytics = (code, jwt) =>
   code
-    ? api.get(`/${API_PATHS.analytics_db.views}/${code}`, {
+    ? api.get(`/${APIS.analytics_path}/${code}`, {
         headers: { authorization: jwt } //FIXME: programmatic calls should use their own identity?
       })
-    : api.get(`/${API_PATHS.analytics_db.views}`, {
+    : api.get(`/${APIS.analytics_path}`, {
         headers: { authorization: jwt } //FIXME: programmatic calls should use their own identity?
       });

@@ -1,10 +1,7 @@
 import apiAdapter from '../services/apiAdapter.js';
-import dotenv from 'dotenv';
-dotenv.config();
+import { APIS } from '../config.js';
 
-const PORT = process.env.WEATHER_PORT || 4003;
-const HOST = process.env.WEATHER_HOST || 'localhost';
-const BASE_URL = `${HOST}:${PORT}`;
+const BASE_URL = `${APIS.weather_host}:${APIS.weather_port}`;
 const api = apiAdapter(BASE_URL);
 
 export const get = (req, res) =>

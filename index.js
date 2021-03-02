@@ -1,10 +1,10 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
+
 import router from './routers/router.js';
-import dotenv from 'dotenv';
-dotenv.config();
-import db from './services/dbService.js';
+import { APP } from './config.js';
+import './services/dbService.js';
 
 const app = express();
 
@@ -14,8 +14,6 @@ app.use(cors());
 
 app.use(router);
 
-const PORT = process.env.PORT || 80;
-const HOST = process.env.HOST || 'localhost';
-app.listen(PORT, () =>
-  console.log(`Simple API Gateway running on ${HOST}:${PORT}`)
+app.listen(APP.port, () =>
+  console.log(`Simple API Gateway running on ${APP.host}:${APP.port}`)
 );

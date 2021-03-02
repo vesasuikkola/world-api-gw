@@ -1,11 +1,8 @@
 import apiAdapter from '../services/apiAdapter.js';
 import * as analyticsService from '../services/analyticsService.js';
-import dotenv from 'dotenv';
-dotenv.config();
+import { APIS } from '../config.js';
 
-const PORT = process.env.WORLD_PORT || 4001;
-const HOST = process.env.WORLD_HOST || 'localhost';
-const BASE_URL = `${HOST}:${PORT}`;
+const BASE_URL = `${APIS.world_host}:${APIS.world_port}`;
 const api = apiAdapter(BASE_URL);
 
 export const get = (req, res) => {
@@ -21,9 +18,8 @@ export const get = (req, res) => {
         analyticsService.updateAnalytics(req.params.code, jwt);
         res.status(worldRes.status).send(worldData);
       }
-      // otherwise, for all request to all countries, compose analytics into the response
+      // otherwise, for request to all countries, compose analytics into the response
       else {
-        // otherwise, enrich with data from the analytics api
         let analytics;
         analyticsService.getAnalytics(null, jwt).then((analyticsRes) => {
           analytics = analyticsRes.data;

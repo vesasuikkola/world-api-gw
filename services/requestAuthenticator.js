@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { AUTH_SECRET } from '../config.js';
+import { SECRETS } from '../config.js';
 
 export default (req, res, next) => {
   if (!req.headers['authorization']) {
@@ -7,18 +7,14 @@ export default (req, res, next) => {
     return res.status(401).send('Unauthorized');
   }
 
-  jwt.verify(
-    req.headers['authorization'],
-    AUTH_SECRET.secret,
-    (err, decoded) => {
-      if (err) {
-        auditLog(req.method, req.path, 'unauthorized', req.ip);
-        return res.status(403).send('Forbidden');
-      }
-      next();
-      auditLog(req.method, req.path, decoded.id);
+  jwt.verify(req.headers['authorization'], SECRETS.auth, (err, decoded) => {
+    if (err) {
+      auditLog(req.method, req.path, 'unauthorized', req.ip);
+      return res.status(403).send('Forbidden');
     }
-  );
+    next();
+    auditLog(req.method, req.path, decoded.id);
+  });
 };
 
 const auditLog = (method, path, user) =>

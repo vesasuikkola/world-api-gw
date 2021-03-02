@@ -1,8 +1,7 @@
 import mongoose from 'mongoose';
-import dotenv from 'dotenv';
-dotenv.config();
+import { SECRETS } from '../config.js';
 
-export default mongoose.connect(process.env.MONGODB_URI, {
+export default mongoose.connect(SECRETS.mongodb_uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });

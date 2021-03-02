@@ -2,7 +2,7 @@ import express from 'express';
 import isAuthorized from '../services/requestAuthenticator.js';
 
 const router = express.Router();
-router.get('/', (req, res) => res.send('Simple API Gateway'));
+router.get('/', (req, res) => res.send('Hello from the Simple API Gateway'));
 
 // Authentication
 import * as auth from '../controllers/authController.js';
