@@ -18,6 +18,10 @@ import * as worldAPI from '../controllers/worldController.js';
 router.get('/world/countries/:code', isAuthorized, worldAPI.get);
 router.get('/world/countries', isAuthorized, worldAPI.get);
 
+// Weather API
+import * as weatherAPI from '../controllers/weatherController.js'
+router.get('/weather*', isAuthorized, weatherAPI.get)
+
 // TODO add separate Logging API?
 
 export default router;
